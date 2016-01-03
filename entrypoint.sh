@@ -1,4 +1,5 @@
 #!/bin/sh -e
+python /opt/plexpy/PlexPy.py
 
 # Delete PID file (we don't use that)
 if [ -f /config/Plex\ Media\ Server/plexmediaserver.pid ]
