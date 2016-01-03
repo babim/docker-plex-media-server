@@ -1,5 +1,7 @@
-  * `latest` latest public (as described here) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest 'Get your own badge on imagelayers.io')
-  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:autoupdate 'Get your own badge on imagelayers.io')
+# Thanks wernight
+
+  * `latest` latest public (as described here) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=babim/plex:latest 'Get your own badge on imagelayers.io')
+  * `autoupdate` installs latest on start (see below for differences) [![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=babim/plex:autoupdate 'Get your own badge on imagelayers.io')
   * `0.9.12.13` (or similar) are like `latest` but for a specific version
 
 Dockerized [Plex Media Server](https://plex.tv/).
@@ -15,7 +17,7 @@ Example:
 
     $ mkdir ~/plex-config
     $ chown 797:797 -R ~/plex-config
-    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 wernight/plex-media-server
+    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 babim/plex
 
 Once done, wait a few seconds and open `http://localhost:32400/web` in your browser.
 
