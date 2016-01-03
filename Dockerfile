@@ -1,4 +1,6 @@
-FROM debian:jessie
+FROM babim/debianbase
+
+MAINTAINER "Duc Anh Babim" <ducanh.babim@yahoo.com>
 
 # 1. Create plex user
 # 2. Download and install Plex (non plexpass)
@@ -23,7 +25,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && rm -f /bin/start \
  && apt-get purge -y --auto-remove \
         curl \
- && apt-get clean \
+ && apt-get clean && apt-get autoclean && apt-get autoremove -y \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /config \
  && chown plex:plex /config
@@ -31,7 +33,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
 VOLUME /config
 VOLUME /media
 
-EXPOSE 32400
+EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp
 
 # the number of plugins that can run at the same time
 ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS 6
