@@ -28,6 +28,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && mkdir /config \
  && chown plex:plex /config
 
+# install monitor plex
 RUN cd /opt && git clone https://github.com/drzoidberg33/plexpy.git
 
 VOLUME /config
