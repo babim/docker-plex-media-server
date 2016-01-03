@@ -10,7 +10,7 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
-        curl \
+        curl git \
  && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
     | grep -o '[^"'"'"']*amd64.deb' \
     | grep -v binaries` \
@@ -28,10 +28,12 @@ RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && mkdir /config \
  && chown plex:plex /config
 
+RUN cd /opt && git clone https://github.com/drzoidberg33/plexpy.git
+
 VOLUME /config
 VOLUME /media
 
-EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp
+EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp 8181
 
 # the number of plugins that can run at the same time
 ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS 6
