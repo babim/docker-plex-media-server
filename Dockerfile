@@ -1,7 +1,5 @@
 FROM babim/debianbase
 
-MAINTAINER "Duc Anh Babim" <ducanh.babim@yahoo.com>
-
 # 1. Create plex user
 # 2. Download and install Plex (non plexpass)
 # 3. Create writable config directory in case the volume isn't mounted
