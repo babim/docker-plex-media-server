@@ -1,8 +1,8 @@
+Thanks wernight
+
   * `latest` latest public (as described here)
   * `autoupdate` installs latest on start (see below for differences)
   * `0`, `0.9`, `0.9.15`, `0.9.15.6` (or similar) are like `latest` but for a specific version
-
-[![](https://badge.imagelayers.io/wernight/plex-media-server:latest.svg)](https://imagelayers.io/?images=wernight/plex-media-server:latest,wernight/plex-media-server:autoupdate,wernight/plex-media-server:0 'Get your own badge on imagelayers.io')
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
@@ -18,7 +18,7 @@ Example:
 
     $ mkdir ~/plex-config
     $ chown 797:797 -R ~/plex-config
-    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 wernight/plex-media-server
+    $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 babim/plex
 
 Once done, wait a few seconds and open `http://localhost:32400/web` in your browser.
 
@@ -26,7 +26,7 @@ The flag `--net=host` is only required for the first run, so that your can login
 
 To [find your X-Plex-Token](https://support.plex.tv/hc/en-us/articles/204059436-Finding-your-account-token-X-Plex-Token) a helper script has been provided, just run:
 
-    $ docker run --rm -it wernight/plex-media-server retrieve-plex-token
+    $ docker run --rm -it babim/plex retrieve-plex-token
 
 The `--restart=always` is optional, it'll for example allow auto-start on boot.
 
@@ -36,7 +36,7 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
 
     version: '2'
     plex:
-      image: wernight/plex-media-server:autoupdate
+      image: babim/plex:autoupdate
       ports:
         # for access to the Plex Media Server [required]
         - "32400:32400"
@@ -71,46 +71,22 @@ Example of [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/)
       * Downloads and installs the official binaries.
       * Avoids [PID 1 / zombie reap problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/) (if plex or one of its subprocesses dies) by running directly plex.
 
-#### Comparison of main Plex Docker containers
-
-Image                        | Size                 | [Runs As]  | [PID 1 Reap] | [Slim Container] | [Plex Pass]
----------------------------- | -------------------- | ---------- | ------------ | ---------------- | -----------
-[wernight/plex-media-server] | ![][img-wernight]    | **user**   | **Safe**     | **Yes**          | **Supported**
-[linuxserver/plex]           | ![][img-linuxserver] | **user**   | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
-[timhaak/plex]               | ![][img-timhaak]     | root       | Unsafe       | No               | Supported<sup>[1](#footnote1)</sup>
-[needo/plex]                 | ![][img-needo]       | root       | **Safe**     | No               | Supported<sup>[1](#footnote1)</sup>
-[binhex/arch-plex]           | ![][img-binhex]      | root       | Unsafe       | No               | No
-
-<a name="footnote1">1</a>: Supported by downloading via third party and not from the official Plex website.
-
-Based on current state as of January 2016 (if you find any mistake please open a ticket on GitHub).
-
-[Runs As]: https://opensource.com/business/14/7/docker-security-selinux
-[PID 1 Reap]: https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
-[Slim Container]: https://blog.phusion.nl/2015/01/20/baseimage-docker-fat-containers-treating-containers-vms/
-[Plex Pass]: https://support.plex.tv/hc/en-us/articles/201844613-Early-Access-Preview-Releases
-[wernight/plex-media-server]: https://registry.hub.docker.com/u/wernight/plex-media-server/
-[linuxserver/plex]:           https://registry.hub.docker.com/u/linuxserver/plex/
-[timhaak/plex]:               https://registry.hub.docker.com/u/timhaak/plex/
-[needo/plex]:                 https://registry.hub.docker.com/u/needo/plex/
-[binhex/arch-plex]:           https://registry.hub.docker.com/u/binhex/arch-plex/
-
 ### Upgrades and Versions
 
 *Plex Media Server* does *not* support auto-upgrade from the UI on Linux. If/once it does, we'd be more than happy to support it.
 
 There are two ways to keep up to date:
 
-  * Using `wernight/plex-media-server:latest` (default) – To upgrade to the latest public version do again a `docker pull wernight/plex-media-server` and restart your container; that should be it. You may use a *tagged version* to use a fixed or older version as well. It works as described here.
-  * Using `wernight/plex-media-server:autoupdate` (for users who want the really latest) – Installs the latest public or **Plex Pass** release each time the container starts. It has a few differences compared to what is described here:
+  * Using `babim/plex:latest` (default) – To upgrade to the latest public version do again a `docker pull babim/plex` and restart your container; that should be it. You may use a *tagged version* to use a fixed or older version as well. It works as described here.
+  * Using `babim/plex:autoupdate` (for users who want the really latest) – Installs the latest public or **Plex Pass** release each time the container starts. It has a few differences compared to what is described here:
       * Runs as `root` initially so it can install Plex (required), after that it runs as `plex` user.
       * Supports PlexPass: Premium users get to download newer versions shortly before they get public. For that either specify `PLEX_LOGIN` and `PLEX_PASSWORD` or preferably `X_PLEX_TOKEN`:
 
-            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e X_PLEX_TOKEN='<my_x_plex_token>' wernight/plex-media-server:autoupdate
+            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e X_PLEX_TOKEN='<my_x_plex_token>' babim/plex:autoupdate
 
         Alternatively you can specify your Plex login/password (only be used to retrieve the latest official download URL and cleared after that) like:
 
-            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEX_LOGIN='<my_plex_login>' -e PLEX_PASSWORD='<my_plex_password>' wernight/plex-media-server:autoupdate
+            $ docker run -d --restart=always -v ~/plex-config:/config -v ~/Movies:/media --net=host -p 32400:32400 -e PLEX_LOGIN='<my_plex_login>' -e PLEX_PASSWORD='<my_plex_password>' babim/plex:autoupdate
 
 
 ### Environment Variables
@@ -160,10 +136,3 @@ But don't take my word for it, it's really easy for you to check.
 ### Feedbacks
 
 Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
-
-[img-wernight]: https://badge.imagelayers.io/wernight/plex-media-server:latest.svg
-[img-linuxserver]: https://badge.imagelayers.io/linuxserver/plex:latest.svg
-[img-timhaak]: https://badge.imagelayers.io/timhaak/plex:latest.svg
-[img-needo]: https://badge.imagelayers.io/needo/plex:latest.svg
-[img-binhex]: https://badge.imagelayers.io/binhex/arch-plex:latest.svg
-
