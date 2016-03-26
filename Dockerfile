@@ -6,48 +6,42 @@ FROM babim/debianbase
 # This gets the latest non-plexpass version
 # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
 # We won't use upstart anyway.
-RUN useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
+RUN set -x \
+ && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
- && DOWNLOAD_URL=`curl -Ls https://plex.tv/downloads \
-    | grep -o '[^"'"'"']*amd64.deb' \
-    | grep -v binaries` \
- && echo $DOWNLOAD_URL \
- && curl -L $DOWNLOAD_URL -o plexmediaserver.deb \
+        xmlstarlet \
+ && curl -L 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' -o plexmediaserver.deb \
  && touch /bin/start \
  && chmod +x /bin/start \
  && dpkg -i plexmediaserver.deb \
  && rm -f plexmediaserver.deb \
  && rm -f /bin/start \
- && apt-get purge -y --auto-remove \
-        curl \
- && apt-get clean && apt-get autoclean && apt-get autoremove -y \
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /config \
  && chown plex:plex /config
+
+# PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS: The number of plugins that can run at the same time.
+# $PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
+# PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR: defines the location of the configuration directory,
+#   default is "${HOME}/Library/Application Support".
+ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
+    PLEX_MEDIA_SERVER_MAX_STACK_SIZE=3000 \
+    PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/config \
+    PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver \
+    LD_LIBRARY_PATH=/usr/lib/plexmediaserver \
+    TMPDIR=/tmp
+
+COPY *.sh Preferences.xml /
+COPY retrieve-plex-token /usr/local/bin/
 
 VOLUME /config
 VOLUME /media
 
 EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp 8181
-
-# the number of plugins that can run at the same time
-ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS 6
-
-# ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE
-ENV PLEX_MEDIA_SERVER_MAX_STACK_SIZE 3000
-
-# location of configuration, default is
-# "${HOME}/Library/Application Support"
-ENV PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR /config
-
-ENV PLEX_MEDIA_SERVER_HOME /usr/lib/plexmediaserver
-ENV LD_LIBRARY_PATH /usr/lib/plexmediaserver
-ENV TMPDIR /tmp
-
-ADD *.sh /
 
 USER plex
 
