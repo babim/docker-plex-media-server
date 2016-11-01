@@ -45,6 +45,7 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
     TMPDIR=/tmp
 
 COPY root /
+RUN chmod +x plex-entrypoint.sh
 
 VOLUME ["/config", "/media"]
 
