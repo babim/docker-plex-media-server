@@ -37,7 +37,7 @@ RUN set -x \
 # $PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
 # PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR: defines the location of the configuration directory,
 #   default is "${HOME}/Library/Application Support".
-ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6 \
+ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=10 \
     PLEX_MEDIA_SERVER_MAX_STACK_SIZE=3000 \
     PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/config \
     PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver \
