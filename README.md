@@ -1,9 +1,5 @@
 Thanks wernight
 
-  * `latest` latest public (as described here)
-  * `autoupdate` installs latest on start (see below for differences)
-  * `0`, `0.9`, `0.9.15`, `0.9.15.6` (or similar) are like `latest` but for a specific version
-
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
 
