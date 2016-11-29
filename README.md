@@ -1,3 +1,6 @@
+[![](https://images.microbadger.com/badges/image/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own version badge on microbadger.com")
+
 Thanks wernight
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
