@@ -1,5 +1,10 @@
 FROM babim/alpinebase:edge
 
+# install openvpn and supervisor
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk add --no-cache rsyslog supervisor openvpn
+
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
 
 ENV DESTDIR="/glibc"
@@ -59,14 +64,21 @@ RUN apk del --no-cache xz binutils patchelf file wget \
  && chown plex:plex /config
 
 COPY root /
-RUN chmod +x /plex-entrypoint.sh acdcli-entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh entrypoint.sh
 
 USER plex
 
 WORKDIR /glibc
 
-VOLUME ["/config", "/media", "/cache", "/data", "/cloud"]
+VOLUME ["/config", "/media", "/cache", "/data", "/cloud", "/etc/openvpn"]
 EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp 8181
 
-ENTRYPOINT ["/usr/local/bin/dumb-init", "/plex-entrypoint.sh"]
-CMD ["/glibc/start_pms"]
+ENV CLIENT_CONFIG_FILE /etc/openvpn/client.conf
+
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["app:start"]
