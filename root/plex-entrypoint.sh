@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+[ -f /acdcli-entrypoint.sh ] && /acdcli-entrypoint.sh
+
 # Legacy environment variables support.
 if [ -n "$PLEX_USERNAME" ]; then
     echo "WARNING: 'PLEX_USERNAME' has been deprecated and is now called 'PLEX_LOGIN'."
