@@ -102,10 +102,11 @@ Additional setting environement variables for the `:autoupdate` tagged image:
   * `PLEX_SKIP_UPDATE` can be set to `true` to skip completely the install of latest Plex.
   * `PLEX_FORCE_DOWNLOAD_URL` can be set to a URL to force downloading and installing a given Plex Linux package for Debian 64-bit.
 
-with OpenVPN client
+### with OpenVPN client
+
 `-v ~/client.ovpn:/etc/openvpn/client.conf --cap-add=NET_ADMIN`
 
-acdcli amazon cloud drive tool on alpine linux
+### acdcli amazon cloud drive tool on alpine linux
 ```
 -v ~/.cache/acd_cli:/cache -v /yourdata:/data -v /cloudmount:/cloud
 ```
