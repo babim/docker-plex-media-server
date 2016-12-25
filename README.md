@@ -104,7 +104,6 @@ Additional setting environement variables for the `:autoupdate` tagged image:
 
 with OpenVPN client
 `-v ~/client.ovpn:/etc/openvpn/client.conf --cap-add=NET_ADMIN`
-`-e SSHPASS=yourpassword` or default root:root
 
 acdcli amazon cloud drive tool on alpine linux
 ```
