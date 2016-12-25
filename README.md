@@ -1,7 +1,4 @@
-[![](https://images.microbadger.com/badges/image/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own version badge on microbadger.com")
-
-Thanks wernight
+Thanks https://github.com/Adam-Ant/alpine-plexmediaserver
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
@@ -130,8 +127,3 @@ your `/config` mounting point):
 In practice, you may want to be safer and back-up everything except may be `~/plex-config/Plex Media Server/Cache/`
 which is pretty large and you can really just skip it. It'll be rebuild with the thumbnails, etc. as you had them.
 But don't take my word for it, it's really easy for you to check.
-
-
-### Feedbacks
-
-Having more issues? [Report a bug on GitHub](https://github.com/wernight/docker-plex-media-server/issues).
