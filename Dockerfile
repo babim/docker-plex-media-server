@@ -64,7 +64,7 @@ RUN apk del --no-cache xz binutils patchelf file wget \
  && chown plex:plex /config
 
 COPY root /
-RUN chmod +x /plex-entrypoint.sh /entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh && chmod +x /entrypoint.sh
 
 USER plex
 
