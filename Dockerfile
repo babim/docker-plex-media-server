@@ -18,6 +18,7 @@ RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
 # no need for git or the apk cache anymore
 RUN apk del git
 
+# install openvpn and supervisor
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --no-cache rsyslog supervisor openvpn
@@ -81,7 +82,7 @@ RUN apk del --no-cache xz binutils patchelf file wget \
  && chown plex:plex /config
 
 COPY root /
-RUN chmod +x /plex-entrypoint.sh acdcli-entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh acdcli-entrypoint.sh entrypoint.sh
 
 USER plex
 
