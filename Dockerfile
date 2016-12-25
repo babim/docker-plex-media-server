@@ -51,9 +51,9 @@ RUN addgroup -g $GID $GNAME \
  && mv usr/lib/plexmediaserver $DESTDIR/plex-media-server \
 
  && wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 \
- && chmod +x /usr/local/bin/dumb-init \
+ && chmod +x /usr/local/bin/dumb-init
 
- && apk del --no-cache xz binutils patchelf file wget \
+RUN apk del --no-cache xz binutils patchelf file wget \
  && rm -rf /tmp/* \
  && mkdir /config \
  && chown plex:plex /config
