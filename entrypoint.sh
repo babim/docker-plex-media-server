@@ -17,6 +17,8 @@ appSetup () {
 
 appStart () {
   appSetup
+  [ -f /plex-entrypoint.sh ] && "/usr/local/bin/dumb-init /plex-entrypoint.sh"
+  [ -f /acdcli-entrypoint.sh ] && /acdcli-entrypoint.sh
   /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 }
 
