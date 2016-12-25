@@ -40,7 +40,7 @@ RUN addgroup -g $GID $GNAME \
  && wget -O plexmediaserver.deb 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' \
  && ar x plexmediaserver.deb \
  && tar -xf data.tar.* \
- && find usr/lib/plexmediaserver -type f -perm /0111 -exec sh -c "file --brief \"{}\" | grep -q "ELF" && patchelf --set-interpreter \"/usr/glibc-compat/lib\" \"{}\" " \; \
+ && find usr/lib/plexmediaserver -type f -perm /0111 -exec sh -c "file --brief \"{}\" | grep -q "ELF" && patchelf --set-interpreter \"$GLIBC_LD_LINUX_SO\" \"{}\" " \; \
  && mv /tmp/start_pms.patch usr/sbin/ \
  && cd usr/sbin/ \
  && patch < start_pms.patch \
