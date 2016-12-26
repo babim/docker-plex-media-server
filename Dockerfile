@@ -1,5 +1,5 @@
 FROM babim/plex:alpine
-
+USER root
 # create dirs for the config, local mount point, and cloud destination
 #RUN mkdir /config /cache /data /cloud
 RUN mkdir /cache /data /cloud
