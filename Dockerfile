@@ -59,7 +59,7 @@ ADD start_pms.patch /tmp/start_pms.patch
 
 RUN addgroup -g $GID $GNAME \
  && adduser -SH -u $UID -G $GNAME -s /usr/sbin/nologin $UNAME \
- && apk add --no-cache xz openssl file \
+ && apk add --no-cache xz openssl file xmlstarlet \
  && wget -O plexmediaserver.deb 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' \
  && ar x plexmediaserver.deb \
  && tar -xf data.tar.* \
