@@ -1,5 +1,5 @@
 FROM babim/plex:alpine
-
+USER root
 # install openvpn and supervisor
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
