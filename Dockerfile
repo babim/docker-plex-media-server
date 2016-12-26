@@ -95,8 +95,5 @@ ENV CLIENT_CONFIG_FILE /etc/openvpn/client.conf
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-
 CMD ["app:start"]
