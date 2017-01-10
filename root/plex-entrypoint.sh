@@ -6,6 +6,7 @@ echo "wait mount /media"
 sleep 15
 checkpath
 }
+waitsleep
 checkpath() {
 if [ -z "`ls /media --hide='lost+found'`" ]
 then
@@ -14,7 +15,6 @@ else
 echo "mount completed! Plex starting..."
 fi
 }
-checkpath
 
 # Legacy environment variables support.
 if [ -n "$PLEX_USERNAME" ]; then
