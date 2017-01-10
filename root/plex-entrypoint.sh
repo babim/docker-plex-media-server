@@ -3,7 +3,7 @@
 # wait /media mount
 waitsleep() {
 echo "wait mount /media"
-sleep 30
+sleep 15
 checkpath
 }
 checkpath() {
