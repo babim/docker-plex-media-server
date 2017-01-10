@@ -82,4 +82,8 @@ tail -Fn 0 '/config/Plex Media Server/Logs/Plex Media Server.log' &
 # Set the stack size
 ulimit -s $PLEX_MAX_STACK_SIZE
 
+export DNSSERVER=${DNSSERVER:-8.8.8.8}
+# Set DNS Server to localhost
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
 exec "$@"
