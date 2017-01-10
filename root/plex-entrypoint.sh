@@ -1,5 +1,21 @@
 #!/bin/sh -e
 
+# wait /media mount
+waitsleep() {
+echo "wait mount /media"
+sleep 30
+checkpath
+}
+checkpath() {
+if [ -z "`ls /media --hide='lost+found'`" ]
+then
+	waitsleep
+else
+echo "mount completed! Plex starting..."
+fi
+}
+checkpath
+
 # Legacy environment variables support.
 if [ -n "$PLEX_USERNAME" ]; then
     echo "WARNING: 'PLEX_USERNAME' has been deprecated and is now called 'PLEX_LOGIN'."
