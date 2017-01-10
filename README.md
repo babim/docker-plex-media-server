@@ -2,6 +2,7 @@ Thanks https://github.com/Adam-Ant/alpine-plexmediaserver
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
 
+Wait version. This plex version will wait when starting up. If /media are empty, plex will wait not start.
 
 ### Usage
 
