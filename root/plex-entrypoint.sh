@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 # wait /media mount
-while [ -z "`ls /media --hide='lost+found'`" ]
+while [ -z "`ls /media`" ]
 do
   echo "wait mount /media"
   sleep 10
