@@ -60,7 +60,7 @@ RUN addgroup -g $GID $GNAME \
 COPY root /
 RUN chmod +x /plex-entrypoint.sh
 
-USER plex
+USER root
 
 WORKDIR /glibc
 
