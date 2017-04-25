@@ -17,9 +17,9 @@ RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
 
 # no need for git or the apk cache anymore
 RUN apk del git
-
+RUN rm -f /*.sh
 COPY root /
-RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh && rm -rf /media/*
+RUN chmod +x /*.sh
 
 USER plex
 
@@ -28,5 +28,5 @@ WORKDIR /glibc
 VOLUME ["/config", "/media", "/cache", "/data", "/cloud"]
 EXPOSE 32400 32469 8324 3005 1900/udp 5353/udp 32410/udp 32412/udp 32413/udp 32414/udp 8181
 
-ENTRYPOINT ["/acdcli-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/plex-entrypoint.sh"]
 CMD ["/glibc/start_pms"]
