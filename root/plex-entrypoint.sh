@@ -20,7 +20,7 @@ export HTTPS_PROXY="$PROXY"
 export HTTP_PROXY="$PROXY"
 
 # set ID docker run
-auid=${auid:-767}
+auid=${auid:-797}
 agid=${agid:-$auid}
 auser=${auser:-user}
 
