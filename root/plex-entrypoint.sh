@@ -22,7 +22,7 @@ export HTTP_PROXY="$PROXY"
 # set ID docker run
 auid=${auid:-767}
 agid=${agid:-$auid}
-auser${auser:-user}
+auser=${auser:-user}
 
 if [[ "$auid" = "0" ]] || [[ "$aguid" == "0" ]]; then
   echo "Run in ROOT user"
