@@ -64,9 +64,9 @@ fi
 [ -f /runssh.sh ] && /runssh.sh
 
 # wait /media mount
-while [ -z "`ls /media`" ]
+while [ -z "`ls $MOUNTPATH`" ]
 do
-  echo "wait mount /media"
+  echo "wait mount $MOUNTPATH"
   sleep 10
 done
 echo "mount completed! Plex starting..."
