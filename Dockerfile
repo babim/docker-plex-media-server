@@ -24,7 +24,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/reposi
     apk add --no-cache rsyslog supervisor openvpn
 
 COPY root /
-RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh && chmod +x /entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh && chmod +x /entrypoint.sh && rm -rf /media/*
 
 USER plex
 
