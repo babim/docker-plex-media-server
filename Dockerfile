@@ -19,7 +19,7 @@ RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
 RUN apk del git
 
 COPY root /
-RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh && rm -rf /media/*
 
 USER plex
 
