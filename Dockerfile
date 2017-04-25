@@ -21,7 +21,7 @@ RUN apk del git
 COPY root /
 RUN chmod +x /plex-entrypoint.sh && chmod +x /acdcli-entrypoint.sh
 
-USER plex
+USER root
 
 WORKDIR /glibc
 
