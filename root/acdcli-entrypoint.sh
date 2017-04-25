@@ -60,4 +60,4 @@ else
 fi
 
 # stop and wait command
-sh
+/usr/local/bin/dumb-init /plex-entrypoint.sh
