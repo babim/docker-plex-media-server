@@ -1,7 +1,4 @@
-FROM babim/plex:alpine
-
-COPY root /
-RUN chmod +x /plex-entrypoint.sh
+FROM babim/plex:alpine.wait
 
 USER root
 
