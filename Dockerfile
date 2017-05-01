@@ -17,6 +17,6 @@ RUN chmod +x plex-entrypoint.sh
 
 VOLUME ["/config", "/media"]
 
-USER root
+USER plex
 
 WORKDIR /usr/lib/plexmediaserver
