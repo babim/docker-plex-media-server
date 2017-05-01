@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/bash
+set -e
 
 # overwrite /etc/fuse.conf to allow other users to access the mounted filesystem from outside the container
 cat <<EOF> /etc/fuse.conf
