@@ -13,7 +13,7 @@ RUN apt-get purge -y git && apt-get autoremove --purge -y && \
     rm -rf /var/lib/apt/lists/*
 
 COPY root /
-RUN chmod +x plex-entrypoint.sh
+RUN chmod +x /plex-entrypoint.sh
 
 VOLUME ["/config", "/media"]
 
