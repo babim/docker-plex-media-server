@@ -1,18 +1,3 @@
-[![](https://images.microbadger.com/badges/image/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.svg)](https://microbadger.com/images/babim/plex:alpine "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.svg)](https://microbadger.com/images/babim/plex:alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn.ssh "Get your own version badge on microbadger.com")
-
 Thanks wernight
 
 Dockerized [Plex Media Server](https://plex.tv/): Plex organizes your video, music, and photo collections and streams them to all of your screens (mobile, TV/Chromecast, laptop...).
@@ -116,6 +101,28 @@ Additional setting environement variables for the `:autoupdate` tagged image:
   * `X_PLEX_TOKEN` or `PLEX_LOGIN` and `PLEX_PASSWORD` are also used to *retrieve latest PlexPass* version (if you have access).
   * `PLEX_SKIP_UPDATE` can be set to `true` to skip completely the install of latest Plex.
   * `PLEX_FORCE_DOWNLOAD_URL` can be set to a URL to force downloading and installing a given Plex Linux package for Debian 64-bit.
+
+### acdcli amazon cloud drive tool on alpine linux
+```
+-v ~/.cache/acd_cli:/cache -v /yourdata:/data -v /cloudmount:/cloud --privileged
+```
+If not have uid and gid option. ACD_CLI with run in uid 1000 add uid and gid option
+or set 0 to run with root
+```
+-e auid="0" -e agid="0"
+```
+I you want use https proxy
+```
+-e PROXY=https://test.lan:8443
+```
+If want mount
+`--privileged`
+
+volume -v
+```
+CONFIGPATH default: /cache
+CACHEPATH default: /cache
+```
 
 
 ### Troubleshooting
