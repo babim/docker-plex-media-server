@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
 
 # clean
-RUN apt-get purge -y git && apt-get autoremove --purge -y && \
+RUN apt-get purge -y git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
