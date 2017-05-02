@@ -42,8 +42,8 @@
 
 -# Add sleep - Possible fix for start on boot.
 -sleep 3
-+if [ -f /config/Plex\ Media\ Server/plexmediaserver.pid ]; then
-+    rm -f /config/Plex\ Media\ Server/plexmediaserver.pid
++if [ -f /config/plex/Plex\ Media\ Server/plexmediaserver.pid ]; then
++    rm -f /config/plex/Plex\ Media\ Server/plexmediaserver.pid
 +fi
 
 -(cd /usr/lib/plexmediaserver; ./Plex\ Media\ Server)
