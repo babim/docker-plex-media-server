@@ -52,7 +52,6 @@ RUN addgroup -g $GID $GNAME \
  && cd /tmp \
  && sed -i "s|<destdir>|$DESTDIR|" usr/sbin/start_pms \
 
- && chmod +x /start.sh \
  && chmod 777 /tmp \
 
  && mv usr/sbin/start_pms $DESTDIR/ \
