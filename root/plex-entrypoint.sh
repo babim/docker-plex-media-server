@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 if [ -f /config/Plex\ Media\ Server/plexmediaserver.pid ] 
 then 
@@ -97,5 +97,8 @@ ulimit -s $PLEX_MAX_STACK_SIZE
 export DNSSERVER=${DNSSERVER:-8.8.8.8}
 # Set DNS Server to localhost
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
 
 exec "$@"
