@@ -14,9 +14,9 @@ WORKDIR /tmp
 
 RUN apk add --no-cache xz binutils patchelf \
 
- && wget http://ftp.debian.org/debian/pool/main/g/glibc/libc6_2.26-6_amd64.deb \
- && wget http://ftp.debian.org/debian/pool/main/g/gcc-4.9/libgcc1_4.9.2-10_amd64.deb \
- && wget http://ftp.debian.org/debian/pool/main/g/gcc-4.9/libstdc++6_4.9.2-10_amd64.deb \
+ && wget http://ftp.debian.org/debian/pool/main/g/glibc/libc6_2.27-3_amd64.deb \
+ && wget http://ftp.debian.org/debian/pool/main/g/gcc-4.9/libgcc1_4.9.2-10+deb8u1_amd64.deb \
+ && wget http://ftp.debian.org/debian/pool/main/g/gcc-4.9/libstdc++6_4.9.2-10+deb8u1_amd64.deb \
 
  && for pkg in $DEBS; do \
         mkdir $pkg; \
