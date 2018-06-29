@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 # Legacy environment variables support.
 if [ -n "$PLEX_USERNAME" ]; then
@@ -83,5 +83,8 @@ ulimit -s $PLEX_MAX_STACK_SIZE
 export DNSSERVER=${DNSSERVER:-8.8.8.8}
 # Set DNS Server to localhost
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
 
 exec "$@"

@@ -1,5 +1,10 @@
 FROM babim/debianbase
 
+## ubuntu/debian
+RUN apt-get update && \
+    apt-get install -y wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh && apt-get purge -y wget
+
 # Install basic required packages.
 RUN set -x \
  && apt-get update \
