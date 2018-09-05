@@ -1,42 +1,12 @@
-FROM babim/debianbase
+FROM babim/debianbase:9
 
 ## ubuntu/debian
 RUN apt-get update && \
-    apt-get install -y wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    apt-get install -y wget curl bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
     chmod 755 /option.sh && apt-get purge -y wget
 
-# Install basic required packages.
-RUN set -x \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        ca-certificates \
-        curl \
-        xmlstarlet \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-
-RUN set -x \
-    # Create plex user
- && useradd --system --uid 797 -M --shell /usr/sbin/nologin plex \
-    # Download and install Plex (non plexpass) after displaying downloaded URL in the log.
-    # This gets the latest non-plexpass version
-    # Note: We created a dummy /bin/start to avoid install to fail due to upstart not being installed.
-    # We won't use upstart anyway.
- && curl -I 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' \
- && curl -L 'https://plex.tv/downloads/latest/1?channel=8&build=linux-ubuntu-x86_64&distro=ubuntu' -o plexmediaserver.deb \
- && touch /bin/start \
- && chmod +x /bin/start \
- && dpkg -i plexmediaserver.deb \
- && rm -f plexmediaserver.deb \
- && rm -f /bin/start \
-    # Install dumb-init
-    # https://github.com/Yelp/dumb-init
- && DUMP_INIT_URI=$(curl -L https://github.com/Yelp/dumb-init/releases/latest | grep -Po '(?<=href=")[^"]+_amd64(?=")') \
- && curl -Lo /usr/local/bin/dumb-init "https://github.com/$DUMP_INIT_URI" \
- && chmod +x /usr/local/bin/dumb-init \
-    # Create writable config directory in case the volume isn't mounted
- && mkdir /config \
- && chown plex:plex /config
+# install
+RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/debian_plex_install.sh | bash
 
 # PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS: The number of plugins that can run at the same time.
 # $PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
@@ -48,9 +18,6 @@ ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=10 \
     PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver \
     LD_LIBRARY_PATH=/usr/lib/plexmediaserver \
     TMPDIR=/tmp
-
-COPY root /
-RUN chmod +x plex-entrypoint.sh
 
 VOLUME ["/config", "/media"]
 
