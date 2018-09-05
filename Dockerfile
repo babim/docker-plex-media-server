@@ -1,10 +1,11 @@
 FROM babim/alpinebase:edge
 
 ## alpine linux
-RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
-    chmod 755 /option.sh && apk del wget
+RUN apk add --no-cache wget curl bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh
 
-
+# install
+RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/alpine_plex_install.sh | bash
 
 USER plex
 
