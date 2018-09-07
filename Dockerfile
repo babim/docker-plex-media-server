@@ -5,7 +5,7 @@ RUN apk add --no-cache wget curl bash && cd / && wget --no-check-certificate htt
     chmod 755 /option.sh
 
 # install
-RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/alpine_plex_install.sh | bash
+RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/plex_install.sh | bash
 
 USER plex
 
