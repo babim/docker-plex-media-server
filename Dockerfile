@@ -6,7 +6,7 @@ RUN apt-get update && \
     chmod 755 /option.sh
 
 # install
-RUN wget -O - https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/plex_install.sh | bash
+RUN wget --no-check-certificate -O - https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20Plexmedia%20install/plex_install.sh | bash
 
 # PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS: The number of plugins that can run at the same time.
 # $PLEX_MEDIA_SERVER_MAX_STACK_SIZE: Used for "ulimit -s $PLEX_MEDIA_SERVER_MAX_STACK_SIZE".
