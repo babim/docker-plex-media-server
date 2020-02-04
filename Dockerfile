@@ -1,8 +1,6 @@
 FROM babim/ubuntubase:18.04
 # set root for google drive ocamlfuse
 ENV GDRIVE_OPTION true
-ENV auid 0
-ENV auser root
 
 ## ubuntu/debian
 RUN apt-get update && \
