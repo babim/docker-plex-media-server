@@ -22,30 +22,8 @@ export HTTP_PROXY="$PROXY"
 # set ID docker run
 auid=${auid:-797}
 agid=${agid:-$auid}
-auser=${auser:-user}
-
-if [[ "$auid" = "0" ]] || [[ "$agid" == "0" ]]; then
-  echo "Run in ROOT user"
-else
-  echo "Run in $auser"
-  if [ ! -d "/home/$auser" ]; then
-  addgroup -g ${agid} $auser && \
-  adduser -D -u ${auid} -G $auser $auser && \
-  mkdir -p /home/$auser/.cache/acd_cli #no need
-  ln -sf $CACHEPATH /home/$auser/.cache/acd_cli #no need
-  chown -R $auid:$agid /home/$auser #no need
-  chown -R $auid:$agid $CONFIGPATH $CACHEPATH
-  # fix su command user
-  sed -i '$ d' /etc/passwd
-  echo "$auser:x:$auid:$agid:Linux User:/home/$auser:/bin/sh" >> /etc/passwd
-  fi
-  su - $auser
-fi
-
-# help
-echo "use acdcli command"
-echo "---"
-acdcli -h
+auser=${auser:-plex}
+aguser=${aguser:-$auser}
 
 # create startup run
 if [ ! -f "$CONFIGPATH/startup.sh" ]; then
@@ -60,8 +38,66 @@ else
   $CONFIGPATH/startup.sh
 fi
 
-# ssh
-[ -f /runssh.sh ] && /runssh.sh
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
+
+# set loop
+cacheacdcli() {
+		  mkdir -p /home/$auser/.cache/acd_cli #no need
+		  ln -sf $CACHEPATH /home/$auser/.cache/acd_cli #no need
+		  chown -R $auid:$agid /home/$auser #no need
+		  chown -R $auid:$agid $CONFIGPATH $CACHEPATH
+		  # fix su command user
+		  sed -i '$ d' /etc/passwd
+		  echo "$auser:x:$auid:$agid:Linux User:/home/$auser:/bin/sh" >> /etc/passwd
+}
+
+# create and set user
+	if [[ -z "${auid}" ]] || [[ "$auid" == "797" ]]; then
+		echo "start"
+		su - $auser
+	elif [[ "$auid" == "0" ]] || [[ "$aguid" == "0" ]]; then
+		echo "run in user root"
+		export auser=root
+	elif id $auid >/dev/null 2>&1; then
+	        echo "UID exists. Please change UID"
+	else
+		if id $auser >/dev/null 2>&1; then
+		        echo "user exists"
+			if [[ -f /etc/alpine-release ]]; then
+			# usermod alpine
+				deluser $auser && delgroup $aguser
+				addgroup -g $agid $aguser && adduser -D -H -G $aguser -s /bin/false -u $auid $auser
+			else
+			# usermod ubuntu/debian
+				usermod -u $auid $auser
+				groupmod -g $agid $aguser
+			fi
+		else
+			if [[ -f /etc/alpine-release ]]; then
+			# create user alpine
+				addgroup -g $agid $aguser && adduser -D -H -G $aguser -s /bin/false -u $auid $auser
+			else
+			# create user ubuntu/debian
+				groupadd -g $agid $aguser && useradd --system --uid $auid --shell /usr/sbin/nologin -g $aguser $auser
+			fi
+		cacheacdcli
+		su - $auser
+		fi
+	chown -R $auid:$agid /home/$auser #no need
+	# fix su command user
+	sed -i '$ d' /etc/passwd
+	echo "$auser:x:$auid:$agid:Linux User:/home/$auser:/bin/sh" >> /etc/passwd
+	fi
+  
+  fi
+  
+fi
+
+# help
+echo "use acdcli command"
+echo "---"
+acdcli -h
 
 # wait /media mount
 while [ -z "`ls $MOUNTPATH`" ]
@@ -70,12 +106,6 @@ do
   sleep 10
 done
 echo "mount completed! Plex starting..."
-
-if [ -f /config/Plex\ Media\ Server/plexmediaserver.pid ] 
-then 
-  echo "Removing old PID file"
-  rm /config/Plex\ Media\ Server/plexmediaserver.pid 
-fi
 
 # This codec folder seems to be populated dynamically - so we need to check for any more binaries to patch on every boot :(
 if [ -d /config/Plex\ Media\ Server/Codecs ]
