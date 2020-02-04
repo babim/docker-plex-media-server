@@ -1,17 +1,4 @@
-[![](https://images.microbadger.com/badges/image/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex.svg)](https://microbadger.com/images/babim/plex "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:autoupdate.svg)](https://microbadger.com/images/babim/plex:autoupdate "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.svg)](https://microbadger.com/images/babim/plex:alpine "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.svg)](https://microbadger.com/images/babim/plex:alpine "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.openvpn.ssh "Get your own version badge on microbadger.com")
-
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.openvpn.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/babim/plex:alpine.acdcli.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn.ssh "Get your own image badge on microbadger.com")[![](https://images.microbadger.com/badges/version/babim/plex:alpine.acdcli.openvpn.ssh.svg)](https://microbadger.com/images/babim/plex:alpine.acdcli.openvpn.ssh "Get your own version badge on microbadger.com")
+Plex media on Debian container
 
 Thanks wernight
 
