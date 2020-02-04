@@ -1,4 +1,5 @@
-FROM babim/plex:alpine.wait
+FROM babim/plex:alpine
+ENV WAIT_OPTION true
 
 USER root
 
